@@ -1,0 +1,243 @@
+"use client"
+
+import type React from "react"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
+import { Card, CardContent } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Alert, AlertDescription } from "@/components/ui/alert"
+import { Loader2, AlertCircle, FileText, Clipboard, Check } from "lucide-react"
+
+export function MedicalCodingForm() {
+  const [feedback, setFeedback] = useState("")
+  const [response, setResponse] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [activeTab, setActiveTab] = useState("input")
+  const [copied, setCopied] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!feedback.trim()) {
+      setError("Please enter medical conditions to code")
+      return
+    }
+
+    setLoading(true)
+    setError(null)
+    setActiveTab("results")
+
+    try {
+      const res = await fetch("http://localhost:4000/api/process-feedback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ feedback }),
+      })
+
+      if (!res.ok) {
+        throw new Error(`Server responded with status: ${res.status}`)
+      }
+
+      const data = await res.json()
+      setResponse(data.response)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to process request")
+      setActiveTab("input")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const examples = [
+    "Acute myocardial infarction",
+    "Type 2 diabetes mellitus with diabetic nephropathy",
+    "Bacterial pneumonia",
+    "Major depressive disorder, recurrent",
+  ]
+
+  const handleExampleClick = (example: string) => {
+    setFeedback(example)
+  }
+
+  const copyToClipboard = () => {
+    const tempElement = document.createElement("div")
+    tempElement.innerHTML = response
+    const textToCopy = tempElement.textContent || tempElement.innerText || ""
+
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+
+  return (
+    <div className="space-y-6 mx-auto">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger
+            value="input"
+            className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+          >
+            <FileText className="h-4 w-4" />
+            <span>Input</span>
+          </TabsTrigger>
+          <TabsTrigger
+            value="results"
+            disabled={!response && !loading}
+            className="flex items-center gap-2 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-4 w-4"
+            >
+              <path d="M8 2v4" />
+              <path d="M16 2v4" />
+              <path d="M3 10h18" />
+              <path d="M4 6h16a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" />
+              <path d="M12 14v-4" />
+              <path d="M10 12h4" />
+            </svg>
+            <span>Results</span>
+          </TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="input" className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Textarea
+                placeholder="Enter medical conditions for ICD-10 coding..."
+                className="min-h-[200px] resize-none focus-visible:ring-primary"
+                value={feedback}
+                onChange={(e) => setFeedback(e.target.value)}
+              />
+              {error && (
+                <Alert variant="destructive" className="animate-in fade-in-50">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription>{error}</AlertDescription>
+                </Alert>
+              )}
+            </div>
+            <Button
+              type="submit"
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Processing...
+                </>
+              ) : (
+                "Generate ICD-10 Codes"
+              )}
+            </Button>
+          </form>
+
+          <div className="space-y-3">
+            <p className="text-sm font-medium">Example conditions:</p>
+            <div className="flex flex-wrap gap-2">
+              {examples.map((example) => (
+                <Button
+                  key={example}
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleExampleClick(example)}
+                  className="text-xs hover:bg-primary hover:text-primary-foreground"
+                >
+                  {example}
+                </Button>
+              ))}
+            </div>
+          </div>
+        </TabsContent>
+
+        <TabsContent value="results">
+          <Card className="border-2">
+            <CardContent className="pt-6">
+              {loading ? (
+                <div className="flex flex-col items-center justify-center py-12">
+                  <div className="relative">
+                    {/* Outer pulsing circle */}
+                    <div className="absolute -left-4 -top-4 h-20 w-20 rounded-full bg-primary/30 animate-ping opacity-75" />
+                    {/* Middle circle with slower pulse */}
+                    <div className="absolute -left-2 -top-2 h-16 w-16 rounded-full bg-primary/20 animate-pulse" />
+                    {/* Inner stable circle */}
+                    <div className="relative h-12 w-12 rounded-full bg-background flex items-center justify-center">
+                      <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                    </div>
+                  </div>
+                  <p className="mt-6 text-center text-sm text-muted-foreground">
+                    Analyzing medical conditions and generating ICD-10 codes...
+                  </p>
+                </div>
+              ) : response ? (
+                <div className="space-y-4">
+                  <div className="flex justify-end">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={copyToClipboard}
+                      className="flex items-center gap-2 hover:bg-primary hover:text-primary-foreground"
+                    >
+                      {copied ? (
+                        <>
+                          <Check className="h-4 w-4" />
+                          <span>Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Clipboard className="h-4 w-4" />
+                          <span>Copy</span>
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                  <div
+                    className="prose prose-blue dark:prose-invert max-w-none"
+                    dangerouslySetInnerHTML={{ __html: response }}
+                  />
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center py-12 text-center">
+                  <div className="rounded-full bg-primary/10 p-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-6 w-6 text-primary"
+                    >
+                      <path d="M8 2v4" />
+                      <path d="M16 2v4" />
+                      <path d="M3 10h18" />
+                      <path d="M4 6h16a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z" />
+                      <path d="M12 14v-4" />
+                      <path d="M10 12h4" />
+                    </svg>
+                  </div>
+                  <p className="mt-4 text-sm text-muted-foreground">
+                    Submit medical conditions to see ICD-10 codes here
+                  </p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+    </div>
+  )
+}
