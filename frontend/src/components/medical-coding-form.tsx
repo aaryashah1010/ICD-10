@@ -31,7 +31,7 @@ export function MedicalCodingForm() {
     setActiveTab("results")
 
     try {
-      const res = await fetch("http://localhost:4000/api/process-feedback", {
+      const res = await fetch("https://icd-10.onrender.com/api/process-feedback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

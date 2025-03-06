@@ -33,7 +33,7 @@ export default function Home() {
               </div>
               <div>
                 <h1 className="text-xl font-bold tracking-tight">ICD-10 Medical Coding Assistant</h1>
-                <p className="text-sm text-muted-foreground">Powered by Gemini 2.0 Flash</p>
+                {/* <p className="text-sm text-muted-foreground">Powered by Gemini 2.0 Flash</p> */}
               </div>
             </div>
             <ModeToggle />
@@ -65,9 +65,9 @@ export default function Home() {
                     Medical Coding Assistant
                   </a>
                   . The source code is available on{" "}
-                  <a href="#" className="font-medium underline underline-offset-4">
+                  {/* <a href="#" className="font-medium underline underline-offset-4">
                     GitHub
-                  </a>
+                  </a> */}
                   .
                 </p>
                 <p className="text-center text-sm text-muted-foreground md:text-left">
