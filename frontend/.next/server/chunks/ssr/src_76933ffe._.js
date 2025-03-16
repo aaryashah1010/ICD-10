@@ -348,7 +348,7 @@ function MedicalCodingForm() {
         setError(null);
         setActiveTab("results");
         try {
-            const res = await fetch("http://localhost:4000/api/process-feedback", {
+            const res = await fetch("https://icd-10.onrender.com/api/process-feedback", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -569,7 +569,7 @@ function MedicalCodingForm() {
                                             }, this),
                                             "Processing..."
                                         ]
-                                    }, void 0, true) : "Generate ICD-10 Codes"
+                                    }, void 0, true) : "Process"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/medical-coding-form.tsx",
                                     lineNumber: 131,

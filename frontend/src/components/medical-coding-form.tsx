@@ -139,7 +139,7 @@ export function MedicalCodingForm() {
                   Processing...
                 </>
               ) : (
-                "Generate ICD-10 Codes"
+                "Process"
               )}
             </Button>
           </form>
