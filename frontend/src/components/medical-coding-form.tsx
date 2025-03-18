@@ -12,13 +12,13 @@ export function MedicalCodingForm() {
   const [feedback, setFeedback] = useState("")
   const [response, setResponse] = useState("")
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const [error, setError] = useState<string | null>(null)
   const [activeTab, setActiveTab] = useState("input")
   const [copied, setCopied] = useState(false)
 
   const API_URL = "https://icd-10-production.up.railway.app/api/process-feedback" // Adjust for local testing if needed
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (!feedback.trim()) {
@@ -44,6 +44,9 @@ export function MedicalCodingForm() {
         throw new Error(`Server responded with status: ${res.status}`)
       }
 
+      if (!res.body) {
+        throw new Error('Response body is null')
+      }
       const reader = res.body.getReader()
       const decoder = new TextDecoder()
       let done = false
@@ -57,7 +60,8 @@ export function MedicalCodingForm() {
         }
       }
     } catch (err) {
-      setError(err.message || "Failed to process request")
+      const errorMessage = err instanceof Error ? err.message : "Failed to process request"
+      setError(errorMessage)
       setActiveTab("input")
     } finally {
       setLoading(false)
@@ -71,7 +75,7 @@ export function MedicalCodingForm() {
     "Major depressive disorder, recurrent",
   ]
 
-  const handleExampleClick = (example) => {
+  const handleExampleClick = (example: string) => {
     setFeedback(example)
   }
 

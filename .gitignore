@@ -8,7 +8,7 @@ db/chroma_db/
 venv/
 __pycache__/
 *.pyc
-
+.next
 # Ignore any log files
 *.log
 # Logs

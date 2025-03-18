@@ -431,6 +431,9 @@ function MedicalCodingForm() {
             if (!res.ok) {
                 throw new Error(`Server responded with status: ${res.status}`);
             }
+            if (!res.body) {
+                throw new Error('Response body is null');
+            }
             const reader = res.body.getReader();
             const decoder = new TextDecoder();
             let done = false;
@@ -445,7 +448,8 @@ function MedicalCodingForm() {
                 }
             }
         } catch (err) {
-            setError(err.message || "Failed to process request");
+            const errorMessage = err instanceof Error ? err.message : "Failed to process request";
+            setError(errorMessage);
             setActiveTab("input");
         } finally{
             setLoading(false);
@@ -487,20 +491,20 @@ function MedicalCodingForm() {
                                     className: "h-4 w-4"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                                    lineNumber: 97,
+                                    lineNumber: 101,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: "Input"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                                    lineNumber: 98,
+                                    lineNumber: 102,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                            lineNumber: 93,
+                            lineNumber: 97,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsTrigger"], {
@@ -522,67 +526,67 @@ function MedicalCodingForm() {
                                             d: "M8 2v4"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                            lineNumber: 115,
+                                            lineNumber: 119,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                             d: "M16 2v4"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                            lineNumber: 116,
+                                            lineNumber: 120,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                             d: "M3 10h18"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                            lineNumber: 117,
+                                            lineNumber: 121,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                             d: "M4 6h16a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                            lineNumber: 118,
+                                            lineNumber: 122,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                             d: "M12 14v-4"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                            lineNumber: 119,
+                                            lineNumber: 123,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                             d: "M10 12h4"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                            lineNumber: 120,
+                                            lineNumber: 124,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                                    lineNumber: 105,
+                                    lineNumber: 109,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                     children: "Results"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                                    lineNumber: 122,
+                                    lineNumber: 126,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                            lineNumber: 100,
+                            lineNumber: 104,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                    lineNumber: 92,
+                    lineNumber: 96,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -603,7 +607,7 @@ function MedicalCodingForm() {
                                             onChange: (e)=>setFeedback(e.target.value)
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                            lineNumber: 129,
+                                            lineNumber: 133,
                                             columnNumber: 15
                                         }, this),
                                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$alert$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Alert"], {
@@ -614,26 +618,26 @@ function MedicalCodingForm() {
                                                     className: "h-4 w-4"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                    lineNumber: 137,
+                                                    lineNumber: 141,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$alert$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AlertDescription"], {
                                                     children: error
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                    lineNumber: 138,
+                                                    lineNumber: 142,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                            lineNumber: 136,
+                                            lineNumber: 140,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                                    lineNumber: 128,
+                                    lineNumber: 132,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -646,7 +650,7 @@ function MedicalCodingForm() {
                                                 className: "mr-2 h-4 w-4 animate-spin"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                lineNumber: 149,
+                                                lineNumber: 153,
                                                 columnNumber: 19
                                             }, this),
                                             "Processing..."
@@ -654,13 +658,13 @@ function MedicalCodingForm() {
                                     }, void 0, true) : "Process"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                                    lineNumber: 142,
+                                    lineNumber: 146,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                            lineNumber: 127,
+                            lineNumber: 131,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -671,7 +675,7 @@ function MedicalCodingForm() {
                                     children: "Example conditions:"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                                    lineNumber: 159,
+                                    lineNumber: 163,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -684,24 +688,24 @@ function MedicalCodingForm() {
                                             children: example
                                         }, example, false, {
                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                            lineNumber: 162,
+                                            lineNumber: 166,
                                             columnNumber: 17
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                                    lineNumber: 160,
+                                    lineNumber: 164,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                            lineNumber: 158,
+                            lineNumber: 162,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                    lineNumber: 126,
+                    lineNumber: 130,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -719,12 +723,12 @@ function MedicalCodingForm() {
                                             className: "h-8 w-8 animate-spin text-primary"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                            lineNumber: 182,
+                                            lineNumber: 186,
                                             columnNumber: 21
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/medical-coding-form.tsx",
-                                        lineNumber: 181,
+                                        lineNumber: 185,
                                         columnNumber: 19
                                     }, this),
                                     response && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -743,14 +747,14 @@ function MedicalCodingForm() {
                                                                 className: "h-4 w-4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                                lineNumber: 196,
+                                                                lineNumber: 200,
                                                                 columnNumber: 29
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 children: "Copied!"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                                lineNumber: 197,
+                                                                lineNumber: 201,
                                                                 columnNumber: 29
                                                             }, this)
                                                         ]
@@ -760,26 +764,26 @@ function MedicalCodingForm() {
                                                                 className: "h-4 w-4"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                                lineNumber: 201,
+                                                                lineNumber: 205,
                                                                 columnNumber: 29
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                                 children: "Copy"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                                lineNumber: 202,
+                                                                lineNumber: 206,
                                                                 columnNumber: 29
                                                             }, this)
                                                         ]
                                                     }, void 0, true)
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                    lineNumber: 188,
+                                                    lineNumber: 192,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                lineNumber: 187,
+                                                lineNumber: 191,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -789,13 +793,13 @@ function MedicalCodingForm() {
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                lineNumber: 207,
+                                                lineNumber: 211,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/medical-coding-form.tsx",
-                                        lineNumber: 186,
+                                        lineNumber: 190,
                                         columnNumber: 19
                                     }, this),
                                     !response && !loading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -817,53 +821,53 @@ function MedicalCodingForm() {
                                                             d: "M8 2v4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                            lineNumber: 226,
+                                                            lineNumber: 230,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                             d: "M16 2v4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                            lineNumber: 227,
+                                                            lineNumber: 231,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                             d: "M3 10h18"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                            lineNumber: 228,
+                                                            lineNumber: 232,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                             d: "M4 6h16a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1Z"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                            lineNumber: 229,
+                                                            lineNumber: 233,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                             d: "M12 14v-4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                            lineNumber: 230,
+                                                            lineNumber: 234,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                             d: "M10 12h4"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                            lineNumber: 231,
+                                                            lineNumber: 235,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                    lineNumber: 216,
+                                                    lineNumber: 220,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                lineNumber: 215,
+                                                lineNumber: 219,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -871,45 +875,45 @@ function MedicalCodingForm() {
                                                 children: "Submit medical conditions to see ICD-10 codes here"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/medical-coding-form.tsx",
-                                                lineNumber: 234,
+                                                lineNumber: 238,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/medical-coding-form.tsx",
-                                        lineNumber: 214,
+                                        lineNumber: 218,
                                         columnNumber: 19
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/medical-coding-form.tsx",
-                                lineNumber: 179,
+                                lineNumber: 183,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/medical-coding-form.tsx",
-                            lineNumber: 178,
+                            lineNumber: 182,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/medical-coding-form.tsx",
-                        lineNumber: 177,
+                        lineNumber: 181,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/components/medical-coding-form.tsx",
-                    lineNumber: 176,
+                    lineNumber: 180,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/medical-coding-form.tsx",
-            lineNumber: 91,
+            lineNumber: 95,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/medical-coding-form.tsx",
-        lineNumber: 90,
+        lineNumber: 94,
         columnNumber: 5
     }, this);
 }
