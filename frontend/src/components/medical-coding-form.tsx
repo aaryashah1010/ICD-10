@@ -16,7 +16,7 @@ export function MedicalCodingForm() {
   const [activeTab, setActiveTab] = useState("input")
   const [copied, setCopied] = useState(false)
 
-  const API_URL = "http://localhost:4000/api/process-feedback" // Adjust for local testing if needed
+  const API_URL = "https://icd-10-production.up.railway.app/api/process-feedback" // Adjust for local testing if needed
 
   const handleSubmit = async (e) => {
     e.preventDefault()
