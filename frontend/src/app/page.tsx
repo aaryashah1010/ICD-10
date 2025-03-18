@@ -48,7 +48,13 @@ export default function Home() {
             <div className="flex-1">
               <div className="mx-auto max-w-4xl py-12">
                 <div className="mb-8 space-y-4 text-center">
-                  <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">Medical Coding Expert</h2>
+                <div className="flex items-center justify-center gap-3">
+                    
+                    <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">AQKoder</h2>
+                  <Image src="/aqkode.png" alt="Aqkode Logo" width={40} height={40} />
+  
+                    </div>
+
                   <p className="mx-auto max-w-[700px] text-muted-foreground">
                   	Enter medical conditions to receive accurate Related ICD-10 codes 
                   </p>
