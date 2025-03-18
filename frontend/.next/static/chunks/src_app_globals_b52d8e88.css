@@ -1533,18 +1533,6 @@ body {
   line-height: 1rem;
 }
 
-.text-\[4rem\] {
-  font-size: 4rem;
-}
-
-.text-\[1rem\] {
-  font-size: 1rem;
-}
-
-.text-\[2rem\] {
-  font-size: 2rem;
-}
-
 .font-bold {
   font-weight: 700;
 }

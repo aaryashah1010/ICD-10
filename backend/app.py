@@ -10,8 +10,7 @@ from langchain.schema.output_parser import StrOutputParser
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
-
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 

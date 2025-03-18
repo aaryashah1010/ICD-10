@@ -348,7 +348,7 @@ function MedicalCodingForm() {
         setError(null);
         setActiveTab("results");
         try {
-            const res = await fetch("https://icd-10.onrender.com/api/process-feedback", {
+            const res = await fetch("https://icd-10-production.up.railway.app/api/process-feedback", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
